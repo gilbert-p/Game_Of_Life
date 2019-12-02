@@ -1,5 +1,5 @@
-const ROWS = 9;
-const COLUMNS = 9;
+const ROWS = 13;
+const COLUMNS = 13;
 
 let grid = [];
 let generations = [];
@@ -17,6 +17,7 @@ const createGrid = (rows, col) => {
         grid.push(row_temp);
         row_temp = [];
     }
+
 }
 
 
@@ -27,7 +28,8 @@ const create_cell = (y_pos, x_pos) => {
         alive: false,
         coord_x: x_pos,
         coord_y: y_pos,
-        neighbors: function (y, x) {
+        neighbors: function (_y, _x) {
+
 
             let square_bound = 3.
             let iterator = 0;
@@ -43,81 +45,81 @@ const create_cell = (y_pos, x_pos) => {
                     switch (iterator) {
                         case 0:
                             //top-left diagonal
-                            bounded_input = check_bound_input(y - 1, x - 1);
+                            bounded_input = check_bound_input(_y - 1, _x - 1);
                             if (grid[bounded_input.y_val][bounded_input.x_val].alive) {
                                 neighbor_count++;
                             }
-                            // neighbor_list.push(grid[bounded_input.y_val][bounded_input.x_val].alive);
+
                             bounded_input = {};
                             iterator++;
                             break;
                         case 1:
                             //top
-                            bounded_input = check_bound_input(y - 1, x);
+                            bounded_input = check_bound_input(_y - 1, _x);
                             if (grid[bounded_input.y_val][bounded_input.x_val].alive) {
                                 neighbor_count++;
                             }
-                            // neighbor_list.push(grid[bounded_input.y_val][bounded_input.x_val].alive);
+
                             bounded_input = {};
                             iterator++;
                             break;
                         case 2:
                             //top-right diagonal 
-                            bounded_input = check_bound_input(y - 1, x + 1);
+                            bounded_input = check_bound_input(_y - 1, _x + 1);
                             if (grid[bounded_input.y_val][bounded_input.x_val].alive) {
                                 neighbor_count++;
                             }
-                            // neighbor_list.push(grid[bounded_input.y_val][bounded_input.x_val].alive);
+
                             bounded_input = {};
                             iterator++;
                             break;
                         case 3:
                             //left
-                            bounded_input = check_bound_input(y, x - 1);
+                            bounded_input = check_bound_input(_y, _x - 1);
                             if (grid[bounded_input.y_val][bounded_input.x_val].alive) {
                                 neighbor_count++;
                             }
-                            // neighbor_list.push(grid[bounded_input.y_val][bounded_input.x_val].alive);
+
                             bounded_input = {};
                             iterator++;
                             break;
                         case 5:
                             //right
-                            bounded_input = check_bound_input(y, x + 1);
+                            bounded_input = check_bound_input(_y, _x + 1);
                             if (grid[bounded_input.y_val][bounded_input.x_val].alive) {
                                 neighbor_count++;
                             }
-                            // neighbor_list.push(grid[bounded_input.y_val][bounded_input.x_val].alive);
+
                             bounded_input = {};
                             iterator++;
                             break;
                         case 6:
                             //bottom-left-diagonal
-                            bounded_input = check_bound_input(y + 1, x - 1);
+                            bounded_input = check_bound_input(_y + 1, _x - 1);
                             if (grid[bounded_input.y_val][bounded_input.x_val].alive) {
                                 neighbor_count++;
                             }
-                            // neighbor_list.push(grid[bounded_input.y_val][bounded_input.x_val].alive);
+
                             bounded_input = {};
                             iterator++;
                             break;
                         case 7:
                             //bottom
-                            bounded_input = check_bound_input(y + 1, x);
+                            bounded_input = check_bound_input(_y + 1, _x);
                             if (grid[bounded_input.y_val][bounded_input.x_val].alive) {
                                 neighbor_count++;
                             }
-                            // neighbor_list.push(grid[bounded_input.y_val][bounded_input.x_val].alive);
+
                             bounded_input = {};
                             iterator++;
                             break;
                         case 8:
                             //bottom-right-diagonal
-                            bounded_input = check_bound_input(y + 1, x + 1);
+                            bounded_input = check_bound_input(_y + 1, _x + 1);
                             if (grid[bounded_input.y_val][bounded_input.x_val].alive) {
                                 neighbor_count++;
                             }
-                            // neighbor_list.push(grid[bounded_input.y_val][bounded_input.x_val].alive);
+
                             bounded_input = {};
                             iterator++;
                             break;
@@ -134,14 +136,20 @@ const create_cell = (y_pos, x_pos) => {
     return cell;
 };
 
+const getNeighborCount = (y, x) => {
+    return grid[y][x].neighbors(y, x);
+}
+
+//Applying game rules
 const live_cell = (cell) => {
-    console.log("neighbor_count: " + cell.neighbor_count);
+
+
+    let neighbor_count = getNeighborCount(cell.coord_y, cell.coord_x);
 
     //cell comes to life with 3 neighbors
     if (!cell.alive) {
-        if (cell.neighbor_count == 3) {
+        if (neighbor_count == 3) {
             cell.alive = true;
-            console.log("Revived");
             return true;
         } else {
 
@@ -149,29 +157,28 @@ const live_cell = (cell) => {
         }
         //the latter checks are for live cells
     }
-    if (cell.neighbor_count < 2) {
-        console.log("less than 2");
+    if (neighbor_count < 2) {
+        cell.alive = false;
         return false;
     }
-    if (cell.neighbor_count >= 2) {
-        if (cell.neighbor_count < 4) {
-            console.log("cell stays alive");
+    if (neighbor_count >= 2) {
+        if (neighbor_count < 4) {
             //cell stays alive 
             return true;
         }
     }
-    if (cell.neighbor_count > 3) {
-        console.log("greater than 3");
+    if (neighbor_count > 3) {
+        cell.alive = false;
         return false;
     }
 }
 
 const getGridWidth = () => {
-    return grid[0].length;
+    return COLUMNS;
 }
 
 const getGridHeight = () => {
-    return grid.length;
+    return ROWS;
 }
 
 
@@ -185,13 +192,13 @@ const check_bound_input = (y, x) => {
         y_val: 0
     };
     if (x < 0) {
-        coords.x_val = Math.abs(9 + x);
+        coords.x_val = Math.abs(getGridWidth() + x);
     } else {
         coords.x_val = x % getGridWidth();
     }
 
     if (y < 0) {
-        coords.y_val = Math.abs(3 + y);
+        coords.y_val = Math.abs(getGridHeight() + y);
 
     } else {
         coords.y_val = y % getGridHeight();
@@ -201,42 +208,61 @@ const check_bound_input = (y, x) => {
 
 }
 
-const displayGrid = () => {
+const updateGrid = () => {
 
-    let col = grid[0].length;
-    let rows = grid.length;
+    let col = COLUMNS;
+    let rows = ROWS;
+    let print_grid = [];
+    let print_row = [];
+
 
     for (let rr = 0; rr < rows; rr++) {
         for (let cc = 0; cc < col; cc++) {
-            grid[rr][cc].neighbors;
-            if (live_cell(grid[rr][cc])) {
-                // process.stdout.write(`[1] `);
 
-                process.stdout.write(`1 `);
+            live_cell(grid[rr][cc]);
+        }
+        print_grid.push(print_row);
+        print_row = [];
+
+    }
+
+    displayGrid();
+
+}
+
+const displayGrid = () => {
+
+    for (let row_index = 0; row_index < ROWS; row_index++) {
+        for (let col_index = 0; col_index < COLUMNS; col_index++) {
+
+            if (grid[row_index][col_index].alive) {
+                process.stdout.write("X");
             } else {
-                process.stdout.write('0 ');
+                process.stdout.write(" ");
             }
         }
-        console.log("");
+        console.log();
     }
+    console.log();
+}
+
+const initialize_live_cells = () => {
+    flip_state(grid[2][4]);
+
+    flip_state(grid[3][3]);
+    flip_state(grid[4][3]);
+
+    flip_state(grid[5][4]);
+
+    flip_state(grid[5][5]);
+
+    flip_state(grid[3][5]);
+    flip_state(grid[4][5]);
+    displayGrid();
 }
 
 
-
 createGrid(ROWS, COLUMNS);
+initialize_live_cells();
 
-console.log("height: " + getGridHeight());
-
-// displayGrid();
-flip_state(grid[1][4]);
-
-flip_state(grid[0][3]);
-flip_state(grid[2][5]);
-flip_state(grid[0][0]);
-flip_state(grid[0][8]);
-flip_state(grid[2][8]);
-
-
-displayGrid();
-
-console.log(grid[2][7].neighbors(2, 4));
+setInterval(updateGrid, 1000);

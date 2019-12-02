@@ -16,3 +16,6 @@ range to stay within the grid.
     -if a live cell contains < 2 neighbors, it dies
     -if a live cell contains >=3 neighbors, it dies
     -if a dead cell contians == 2 neighbors, it lives
+
+
+Need to figure out how to get neighbor elements from cell function
