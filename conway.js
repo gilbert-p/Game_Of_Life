@@ -1,5 +1,5 @@
-const ROWS = 13;
-const COLUMNS = 13;
+const ROWS = 30;
+const COLUMNS = 20;
 
 let grid = [];
 let generations = [];
@@ -186,6 +186,10 @@ const flip_state = (cell) => {
     cell.alive = !cell.alive;
 }
 
+const toggle_state = (y, x) => {
+    grid[y][x].alive = !grid[y][x].alive;
+}
+
 const check_bound_input = (y, x) => {
     let coords = {
         x_val: 0,
@@ -226,43 +230,42 @@ const updateGrid = () => {
 
     }
 
-    displayGrid();
 
 }
 
-const displayGrid = () => {
+// const displayGrid = () => {
 
-    for (let row_index = 0; row_index < ROWS; row_index++) {
-        for (let col_index = 0; col_index < COLUMNS; col_index++) {
+//     for (let row_index = 0; row_index < ROWS; row_index++) {
+//         for (let col_index = 0; col_index < COLUMNS; col_index++) {
 
-            if (grid[row_index][col_index].alive) {
-                process.stdout.write("X");
-            } else {
-                process.stdout.write(" ");
-            }
-        }
-        console.log();
-    }
-    console.log();
-}
+//             if (grid[row_index][col_index].alive) {
+//                 process.stdout.write("X");
+//             } else {
+//                 process.stdout.write(" ");
+//             }
+//         }
+//         console.log();
+//     }
+//     console.log();
+// }
 
-const initialize_live_cells = () => {
-    flip_state(grid[2][4]);
+// const initialize_live_cells = () => {
+//     flip_state(grid[2][4]);
 
-    flip_state(grid[3][3]);
-    flip_state(grid[4][3]);
+//     flip_state(grid[3][3]);
+//     flip_state(grid[4][3]);
 
-    flip_state(grid[5][4]);
+//     flip_state(grid[5][4]);
 
-    flip_state(grid[5][5]);
+//     flip_state(grid[5][5]);
 
-    flip_state(grid[3][5]);
-    flip_state(grid[4][5]);
-    displayGrid();
-}
+//     flip_state(grid[3][5]);
+//     flip_state(grid[4][5]);
+//     // displayGrid();
+// }
 
 
 createGrid(ROWS, COLUMNS);
-initialize_live_cells();
+// initialize_live_cells();
 
-setInterval(updateGrid, 1000);
+// setInterval(updateGrid, 1000);

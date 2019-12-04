@@ -36,11 +36,11 @@
     background-color: #FF0000;
 }
 
-.off {
-    position: relative;
+.dead {
+    /* position: relative;
     display: flex;
     width: 13.8px;
     height: 13px;
-    margin: 1px;
+    margin: 1px; */
     background-color: #333333;
 }
