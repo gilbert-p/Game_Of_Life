@@ -190,6 +190,7 @@ const toggle_state = (y, x) => {
     grid[y][x].alive = !grid[y][x].alive;
 }
 
+//Torordial Grid
 const check_bound_input = (y, x) => {
     let coords = {
         x_val: 0,
@@ -229,8 +230,11 @@ const updateGrid = () => {
         print_row = [];
 
     }
+}
 
 
+const get_grid = () => {
+    return grid;
 }
 
 // const displayGrid = () => {
@@ -249,20 +253,19 @@ const updateGrid = () => {
 //     console.log();
 // }
 
-// const initialize_live_cells = () => {
-//     flip_state(grid[2][4]);
+const initialize_live_cells = () => {
+    flip_state(grid[2][4]);
 
-//     flip_state(grid[3][3]);
-//     flip_state(grid[4][3]);
+    flip_state(grid[3][3]);
+    flip_state(grid[4][3]);
 
-//     flip_state(grid[5][4]);
+    flip_state(grid[5][4]);
 
-//     flip_state(grid[5][5]);
+    flip_state(grid[5][5]);
 
-//     flip_state(grid[3][5]);
-//     flip_state(grid[4][5]);
-//     // displayGrid();
-// }
+    flip_state(grid[3][5]);
+    flip_state(grid[4][5]);
+}
 
 
 createGrid(ROWS, COLUMNS);

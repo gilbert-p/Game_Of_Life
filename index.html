@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <script src="https://kit.fontawesome.com/7b09121c77.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="./conway.css" />
 
     <title>Epoxi's Game of life errr...</title>
@@ -13,12 +14,30 @@
 
 <body>
 
-    <div class="background">
-        <div class="board" id="game-board"></div>
+    <div class="background-image">
+
+        <div class="board-container">
+
+            <div class="board">
+                <div class="cell-grid" id="game-board"></div>
+            </div>
+
+            <div class="action-menu">
+                <div class="play-button" id="play">
+                    <i class="far fa-play-circle fa-5x" id="play-icon"></i>
+                </div>
+                <div class="randomize"></div>
+                <div class="reset"></div>
+            </div>
+
+        </div>
+
     </div>
+
 
     <script src="conway.js"></script>
     <script src="draw_grid.js"></script>
+    <script src="actions.js"></script>
 </body>
 
 </html>
