@@ -150,26 +150,27 @@ const live_cell = (cell) => {
     if (!cell.alive) {
         if (neighbor_count == 3) {
             cell.alive = true;
-            return true;
+            return;
         } else {
-
-            return false;
+            cell.alive = false;
+            return;
         }
         //the latter checks are for live cells
     }
     if (neighbor_count < 2) {
         cell.alive = false;
-        return false;
+        return;
     }
     if (neighbor_count >= 2) {
         if (neighbor_count < 4) {
             //cell stays alive 
-            return true;
+            cell.alive = true;
+            return;
         }
     }
     if (neighbor_count > 3) {
         cell.alive = false;
-        return false;
+        return;
     }
 }
 
@@ -188,6 +189,7 @@ const flip_state = (cell) => {
 
 const toggle_state = (y, x) => {
     grid[y][x].alive = !grid[y][x].alive;
+    // console.log(`N count for (${y},${x}) is ${getNeighborCount(y,x)}`);
 }
 
 //Torordial Grid

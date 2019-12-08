@@ -89,5 +89,3 @@
 
 
      initialize_live_cells();
-
-     setInterval(update_display_grid, 150);

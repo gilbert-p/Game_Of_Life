@@ -1,6 +1,7 @@
 let is_active = false;
 let current_icon = "";
 
+let interval_timer = "";
 
 
 let advance = function () {
@@ -8,7 +9,7 @@ let advance = function () {
     let play_button = document.getElementById("play");
 
     if (!is_active) {
-        this.update_display_grid(this.get_grid());
+        interval_timer = setInterval(update_display_grid, 150);
 
         play_button.removeChild(play_button.children[0]);
 
@@ -20,6 +21,8 @@ let advance = function () {
 
         is_active = !is_active;
     } else {
+
+        clearInterval(interval_timer);
         play_button.removeChild(play_button.children[0]);
 
         //switch to play icon
@@ -29,6 +32,8 @@ let advance = function () {
         play_button.children[0].classList.add("fa-5x");
 
         is_active = !is_active;
+
+
     }
 }
 
