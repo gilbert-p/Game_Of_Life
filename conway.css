@@ -3,23 +3,36 @@
     box-sizing: border-box;
 }
 
-
 .background-image {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(316deg, rgba(234, 234, 234, 0.02) 0%, rgba(234, 234, 234, 0.02) 16.667%, rgba(128, 128, 128, 0.02) 16.667%, rgba(128, 128, 128, 0.02) 33.334%, rgba(161, 161, 161, 0.02) 33.334%, rgba(161, 161, 161, 0.02) 50.001000000000005%, rgba(154, 154, 154, 0.02) 50.001%, rgba(154, 154, 154, 0.02) 66.668%, rgba(77, 77, 77, 0.02) 66.668%, rgba(77, 77, 77, 0.02) 83.33500000000001%, rgba(10, 10, 10, 0.02) 83.335%, rgba(10, 10, 10, 0.02) 100.002%), linear-gradient(75deg, rgba(39, 39, 39, 0.03) 0%, rgba(39, 39, 39, 0.03) 20%, rgba(232, 232, 232, 0.03) 20%, rgba(232, 232, 232, 0.03) 40%, rgba(33, 33, 33, 0.03) 40%, rgba(33, 33, 33, 0.03) 60%, rgba(84, 84, 84, 0.03) 60%, rgba(84, 84, 84, 0.03) 80%, rgba(112, 112, 112, 0.03) 80%, rgba(112, 112, 112, 0.03) 100%), linear-gradient(103deg, rgba(174, 174, 174, 0.03) 0%, rgba(174, 174, 174, 0.03) 12.5%, rgba(190, 190, 190, 0.03) 12.5%, rgba(190, 190, 190, 0.03) 25%, rgba(191, 191, 191, 0.03) 25%, rgba(191, 191, 191, 0.03) 37.5%, rgba(23, 23, 23, 0.03) 37.5%, rgba(23, 23, 23, 0.03) 50%, rgba(227, 227, 227, 0.03) 50%, rgba(227, 227, 227, 0.03) 62.5%, rgba(71, 71, 71, 0.03) 62.5%, rgba(71, 71, 71, 0.03) 75%, rgba(162, 162, 162, 0.03) 75%, rgba(162, 162, 162, 0.03) 87.5%, rgba(85, 85, 85, 0.03) 87.5%, rgba(85, 85, 85, 0.03) 100%), linear-gradient(355deg, rgba(38, 38, 38, 0.02) 0%, rgba(38, 38, 38, 0.02) 25%, rgba(106, 106, 106, 0.02) 25%, rgba(106, 106, 106, 0.02) 50%, rgba(28, 28, 28, 0.02) 50%, rgba(28, 28, 28, 0.02) 75%, rgba(66, 66, 66, 0.02) 75%, rgba(66, 66, 66, 0.02) 100%), linear-gradient(137deg, rgba(38, 38, 38, 0.03) 0%, rgba(38, 38, 38, 0.03) 25%, rgba(211, 211, 211, 0.03) 25%, rgba(211, 211, 211, 0.03) 50%, rgba(4, 4, 4, 0.03) 50%, rgba(4, 4, 4, 0.03) 75%, rgba(24, 24, 24, 0.03) 75%, rgba(24, 24, 24, 0.03) 100%), linear-gradient(51deg, rgba(253, 253, 253, 0.03) 0%, rgba(253, 253, 253, 0.03) 14.286%, rgba(103, 103, 103, 0.03) 14.286%, rgba(103, 103, 103, 0.03) 28.572%, rgba(46, 46, 46, 0.03) 28.572%, rgba(46, 46, 46, 0.03) 42.858%, rgba(68, 68, 68, 0.03) 42.858%, rgba(68, 68, 68, 0.03) 57.144%, rgba(116, 116, 116, 0.03) 57.144%, rgba(116, 116, 116, 0.03) 71.42999999999999%, rgba(248, 248, 248, 0.03) 71.43%, rgba(248, 248, 248, 0.03) 85.71600000000001%, rgba(174, 174, 174, 0.03) 85.716%, rgba(174, 174, 174, 0.03) 100.002%), linear-gradient(283deg, rgba(20, 20, 20, 0.01) 0%, rgba(20, 20, 20, 0.01) 14.286%, rgba(23, 23, 23, 0.01) 14.286%, rgba(23, 23, 23, 0.01) 28.572%, rgba(19, 19, 19, 0.01) 28.572%, rgba(19, 19, 19, 0.01) 42.858%, rgba(134, 134, 134, 0.01) 42.858%, rgba(134, 134, 134, 0.01) 57.144%, rgba(4, 4, 4, 0.01) 57.144%, rgba(4, 4, 4, 0.01) 71.42999999999999%, rgba(254, 254, 254, 0.01) 71.43%, rgba(254, 254, 254, 0.01) 85.71600000000001%, rgba(87, 87, 87, 0.01) 85.716%, rgba(87, 87, 87, 0.01) 100.002%), linear-gradient(90deg, rgb(168, 1, 206), rgb(20, 120, 203));
+    background-image: linear-gradient(to right top, #943434, #80364b, #653c54, #4b3f4e, #3d3d3d);
 }
 
 .board-container {
     position: absolute;
-    width: calc(100% - 100px);
-    width: calc(100% - 100px);
     background-color: lightcoral;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     display: flex;
+}
+
+.title {
+    position: absolute;
+    top: -6%;
+    left: 50%;
+    width: 300px;
+    height: 50px;
+    background-color: #333333;
+    text-align: center;
+    border-radius: 10px;
+    transform: translateX(-50%);
+    font-family: "Roboto", sans-serif;
+    font-size: 1.5em;
+    color: white;
+
 }
 
 .board {
@@ -35,6 +48,8 @@
 .cell-grid {
     position: relative;
     display: inline-grid;
+    ;
+    height: inherit;
     grid-template-rows: auto;
     grid-template-columns: auto;
     overflow: visible;
@@ -51,15 +66,12 @@
 }
 
 .action-menu {
-    position: relative;
+    position: absolute;
     border-radius: 50%;
     background-color: rgb(255, 255, 255);
     opacity: 0.65;
-    display: flex;
-    left: -100px;
-    top: calc(475px);
-    height: 100%;
-    /* transform: translateX(-50%); */
+    left: calc(100% - 90px);
+    top: calc(100% - 90px);
     justify-content: center;
     flex-direction: column;
     border: 2px solid black;
@@ -102,4 +114,15 @@
     height: 13px;
     margin: 1px; */
     background-color: #333333;
+}
+
+
+/* Portrait */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    .cell {
+        position: relative;
+        width: 15px;
+        height: 15px;
+        margin: 1px;
+    }
 }

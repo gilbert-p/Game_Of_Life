@@ -16,7 +16,7 @@ let advance = function () {
         //switch to pause icon
         play_button.appendChild(document.createElement("i"));
         play_button.children[0].classList.add("fas");
-        play_button.children[0].classList.add("fa-pause");
+        play_button.children[0].classList.add("fa-pause-circle");
         play_button.children[0].classList.add("fa-5x");
 
         is_active = !is_active;
