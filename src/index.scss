@@ -1,0 +1,68 @@
+@mixin center-item {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#main-container {
+  position: absolute;
+  @include center-item();
+}
+
+#cell-container {
+  position: relative;
+  width: 40em;
+  max-width: 40em;
+  background-color: lightblue;
+  flex-wrap: wrap;
+}
+
+.cell {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  background-color: white;
+  border: 1px solid #ddd;
+  margin: 0;
+}
+
+.alive {
+  background-color: #098cf6;
+}
+
+#menu {
+  position: relative;
+  height: 3em;
+  width: 40em;
+  // background-color: lightblue;
+}
+
+.button-text {
+  position: relative;
+  top: 60%;
+  transform: translateY(-50%);
+  left: 5px;
+}
+
+#randomize {
+  position: relative;
+  width: auto;
+  height: 100%;
+  // border: 2px solid red;
+  background-color: lightgreen;
+  border-radius: 20px;
+
+  .gg-controller {
+    position: relative;
+    color: red;
+    top: 50%;
+    transform: translateY(-100%);
+    left: -10px;
+  }
+}
+
+#randomize:hover {
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+}
