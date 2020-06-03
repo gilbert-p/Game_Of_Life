@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Menu = (props) => {
-  const { randomizeGrid, clearGrid, togglePlay, updateGrid } = props;
+  const { randomizeGrid, clearGrid, togglePlay, checkIfRunning } = props;
+
+  const [playToggle, setPlayToggle] = useState(checkIfRunning);
+  const changeButton = () => {
+    setPlayToggle(!playToggle);
+    togglePlay();
+  };
 
   return (
     <div className="game-menu">
@@ -13,9 +19,12 @@ const Menu = (props) => {
         <i class="gg-redo"></i>
         <p>Clear</p>
       </div>
-      <div className=" menu-btn togglePlay" onClick={togglePlay}>
-        <i class="gg-play-button-o"></i>
-        <p>Play</p>
+      <div className=" menu-btn togglePlay" onClick={changeButton}>
+        {playToggle ? (
+          <i class="gg-play-pause-r"></i>
+        ) : (
+          <i class="gg-play-button-o"></i>
+        )}
       </div>
     </div>
   );

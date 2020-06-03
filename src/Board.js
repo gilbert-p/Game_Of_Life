@@ -15,7 +15,7 @@ const Board = () => {
   const [gridHeight, setGridHeight] = useState(25);
   const [cellGrid, setGrid] = useState([]);
   const [generationCount, setGenerationCount] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+  const [isRunning, setIsRunning] = useState(true);
   const [delay, setDelay] = useState(100);
 
   const initializeGrid = () => {
@@ -35,7 +35,7 @@ const Board = () => {
   };
 
   useEffect(() => {
-    initializeGrid();
+    randomizeGrid();
   }, []);
 
   const randomizeGrid = () => {
@@ -170,6 +170,11 @@ const Board = () => {
     }, [delay]);
   };
 
+  const checkIfRunning = () => {
+    setIsRunning(isRunning);
+    return isRunning;
+  };
+
   useInterval(
     () => {
       updateGrid();
@@ -207,6 +212,7 @@ const Board = () => {
         clearGrid={clearGrid}
         togglePlay={togglePlay}
         updateGrid={updateGrid}
+        checkIfRunning={checkIfRunning}
       />
     </>
   );
