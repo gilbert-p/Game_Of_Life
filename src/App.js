@@ -4,6 +4,7 @@ import "./App.scss";
 import { motion } from "framer-motion";
 import { Frame, Scroll, useCycle } from "framer";
 import GameOfLife from "./GameOfLife";
+import "css.gg";
 
 function App() {
   return (

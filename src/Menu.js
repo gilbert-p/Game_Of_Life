@@ -6,13 +6,16 @@ const Menu = (props) => {
   return (
     <div className="game-menu">
       <div className="menu-btn randomize" onClick={randomizeGrid}>
-        Randomize
+        <i class="gg-arrows-exchange"></i>
+        <p>Randomize</p>
       </div>
       <div className="menu-btn clear" onClick={clearGrid}>
-        Clear
+        <i class="gg-redo"></i>
+        <p>Clear</p>
       </div>
       <div className=" menu-btn togglePlay" onClick={togglePlay}>
-        Play
+        <i class="gg-play-button-o"></i>
+        <p>Play</p>
       </div>
     </div>
   );
