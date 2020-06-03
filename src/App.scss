@@ -1,0 +1,88 @@
+$primaryColor: #2979d6;
+$secondaryColor: #29d0d6;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.game-container {
+  position: absolute;
+  width: 40em;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  // background-color: salmon;
+}
+
+.gol-title {
+  margin-bottom: 20px;
+}
+
+.game-grid {
+  position: relative;
+  width: calc(100% - 10px);
+  height: auto;
+  // background-color: gray;
+}
+
+.game-menu {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 2em;
+  width: 25em;
+  margin-top: 1em;
+}
+
+.menu-btn {
+  position: relative;
+}
+
+.randomize {
+  position: relative;
+  width: 10em;
+  height: 2em;
+  background-color: skyblue;
+  cursor: pointer;
+}
+
+.clear {
+  position: relative;
+  width: 5em;
+  height: 2em;
+  background-color: red;
+  cursor: pointer;
+}
+
+.togglePlay {
+  position: relative;
+  width: 5em;
+  height: 2em;
+  background-color: green;
+  cursor: pointer;
+}
+
+table {
+  border-spacing: 0px;
+}
+
+td {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  background-color: white;
+  border: 0.5px solid rgb(223, 223, 223);
+  cursor: pointer;
+}
+
+.alive {
+  background-color: $primaryColor;
+}
+
+.newBorn {
+  background-color: $secondaryColor;
+}

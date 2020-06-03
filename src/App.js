@@ -1,15 +1,14 @@
-import React from "react";
-import "./App.css";
-import Grid from "./components/Grid";
-import Menu from "./components/Menu";
+import React, { useState, useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.scss";
+import { motion } from "framer-motion";
+import { Frame, Scroll, useCycle } from "framer";
+import GameOfLife from "./GameOfLife";
 
 function App() {
   return (
     <>
-      <div id="main-container" className=" d-flex flex-wrap">
-        <Grid GRID_ROWS="40" GRID_COLUMNS="40" />
-        <Menu />
-      </div>
+      <GameOfLife></GameOfLife>
     </>
   );
 }
