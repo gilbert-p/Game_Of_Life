@@ -1,0 +1,110 @@
+$primaryColor: #0d72f2;
+$secondaryColor: #0de4f2;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+body {
+  background-color: rgb(80, 80, 80);
+}
+
+.gol-container {
+  position: absolute;
+  width: auto;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  position: relative;
+  color: white;
+  //   transform: translate(-50%, -50%);
+}
+.board {
+  position: relative;
+  //   width: auto;
+  //   max-width: 656px;
+  width: 328px;
+  height: auto;
+  max-height: 544px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  //   left: 50%;
+  //   top: 50%;
+  //   transform: translate(-50%, -50%);
+  background-color: skyblue;
+
+  .cell {
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    background-color: rgb(243, 7, 39);
+    margin-left: 1px;
+    margin-bottom: 1px;
+  }
+}
+
+.game-menu {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 2em;
+  width: auto;
+  margin-top: 1em;
+}
+
+.menu-btn {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  background-color: $primaryColor;
+
+  &:hover {
+    background-color: $secondaryColor;
+  }
+}
+
+.randomize {
+  position: relative;
+  width: 10em;
+  height: 2em;
+
+  cursor: pointer;
+}
+
+.clear {
+  position: relative;
+  width: 5em;
+  height: 2em;
+
+  cursor: pointer;
+}
+
+.togglePlay {
+  position: relative;
+  width: 2em;
+  height: 2em;
+
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .board {
+    width: 752px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .board {
+    width: 1152px;
+  }
+}

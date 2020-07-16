@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
-import "./App.scss";
-import { motion } from "framer-motion";
-import { Frame, Scroll, useCycle } from "framer";
-import GameOfLife from "./GameOfLife";
+// import "./GOL.scss";
+// import GameOfLife from "./GameOfLife";
+import GameOfLifeV2 from "./GameOfLifeV2";
+import "./GOLv2.scss";
 import "css.gg";
 
 function App() {
   return (
     <>
-      <GameOfLife></GameOfLife>
+      {/* <GameOfLife></GameOfLife> */}
+      <GameOfLifeV2></GameOfLifeV2>
     </>
   );
 }
