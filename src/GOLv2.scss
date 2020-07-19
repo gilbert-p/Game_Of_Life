@@ -1,5 +1,6 @@
 $primaryColor: #0d72f2;
 $secondaryColor: #0de4f2;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
 
 * {
   margin: 0;
@@ -22,22 +23,19 @@ body {
 .title {
   position: relative;
   color: white;
-  //   transform: translate(-50%, -50%);
+  top: -1rem;
+  left: 0.1rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
 }
 .board {
   position: relative;
-  //   width: auto;
-  //   max-width: 656px;
   width: 328px;
   height: auto;
   max-height: 544px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  //   left: 50%;
-  //   top: 50%;
-  //   transform: translate(-50%, -50%);
-  // background-color: skyblue;
 
   .cell {
     position: relative;
@@ -52,7 +50,7 @@ body {
 .game-menu {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 2em;
   width: auto;
   margin-top: 1em;
@@ -67,7 +65,8 @@ body {
   font-weight: bold;
   color: white;
   background-color: $primaryColor;
-
+  margin-left: 3rem;
+  font-family: "Open Sans", sans-serif;
   &:hover {
     background-color: $secondaryColor;
   }
@@ -91,9 +90,8 @@ body {
 
 .togglePlay {
   position: relative;
-  width: 2em;
+  width: 6em;
   height: 2em;
-
   cursor: pointer;
 }
 

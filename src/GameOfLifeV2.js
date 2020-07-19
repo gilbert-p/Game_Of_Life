@@ -2,20 +2,23 @@ import React, { useEffect, useState, useRef } from "react";
 import Menu from "./Menu.js";
 
 const Cell = (props) => {
-  const { key, newBorn, alive } = props;
+  const { key, newBorn, alive, row_index, cell_index } = props;
   return (
     <div
-      className={`cell ${newBorn ? "newBorn" : ""} ${alive ? "alive" : ""}`}
-      id={key}></div>
+      key={`R${row_index}C${cell_index}`}
+      id={`R${row_index}C${cell_index}`}
+      className={`cell ${newBorn ? "newBorn" : ""} ${
+        alive ? "alive" : ""
+      }`}></div>
   );
 };
 
 const GameOfLifeV2 = () => {
-  const [windowWidth, setWindowWidth] = useState(0);
-  const [windowHeight, setWindowHeight] = useState(0);
-  const [cellCount, setCellCount] = useState(1100); //default for mobile
-  const [gridWidth, setGridWidth] = useState(40);
-  const [gridHeight, setGridHeight] = useState(25);
+  const [windowWidth, setWindowWidth] = useState(null);
+  const [windowHeight, setWindowHeight] = useState(null);
+  const [cellCount, setCellCount] = useState(null); //default for mobile
+  const [gridWidth, setGridWidth] = useState(null);
+  const [gridHeight, setGridHeight] = useState(null);
   const [cellGrid, setGrid] = useState([]);
   const [generationCount, setGenerationCount] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
@@ -32,73 +35,57 @@ const GameOfLifeV2 = () => {
       };
     }
     handleResize();
-  });
 
-  useEffect(() => {
     function determineCellCount() {
-      if (windowWidth < 768) {
-        setCellCount(399);
-        setGridWidth(19);
-        setGridHeight(21);
-      }
-      if (windowWidth >= 768) {
-        setCellCount(1100);
-        setGridWidth(46);
-        setGridHeight(25);
-      }
-      if (windowWidth >= 1200) {
-        setCellCount(1608);
-        setGridWidth(67);
-        setGridHeight(24);
+      if (windowWidth !== null) {
+        if (windowWidth >= 1200) {
+          setCellCount(1608);
+          setGridWidth(67);
+          setGridHeight(24);
+        }
+        if (windowWidth >= 768 && windowWidth < 1200) {
+          setCellCount(1100);
+          setGridWidth(44);
+          setGridHeight(25);
+        }
+        if (windowWidth < 768) {
+          setCellCount(399);
+          setGridWidth(19);
+          setGridHeight(21);
+        }
       }
     }
-
     determineCellCount();
   }, [windowWidth]);
-
-  const initializeGrid = () => {
-    let grid = [];
-
-    for (let rowIndex = 0; rowIndex < gridHeight; rowIndex++) {
-      let row = [];
-      for (let colIndex = 0; colIndex < gridWidth; colIndex++) {
-        let value = false;
-        row.push({
-          status: value,
-        });
-      }
-      grid.push(row);
-    }
-    setGrid(grid);
-  };
 
   useEffect(() => {
     function randomizeGrid() {
       let grid = [];
 
-      for (let rowIndex = 0; rowIndex < gridHeight; rowIndex++) {
-        let row = [];
-        for (let colIndex = 0; colIndex < gridWidth; colIndex++) {
-          let cellState = Math.random() > 0.8 ? true : false;
-          if (!cellState) {
-            row.push({
-              status: cellState,
-            });
-          } else {
-            row.push({
-              status: cellState,
-              newBorn: true,
-            });
+      if (gridWidth !== null) {
+        for (let rowIndex = 0; rowIndex < gridHeight; rowIndex++) {
+          let row = [];
+          for (let colIndex = 0; colIndex < gridWidth; colIndex++) {
+            let cellState = Math.random() > 0.8 ? true : false;
+            if (!cellState) {
+              row.push({
+                status: cellState,
+              });
+            } else {
+              row.push({
+                status: cellState,
+                newBorn: true,
+              });
+            }
           }
+          grid.push(row);
         }
-        grid.push(row);
+        setGrid(grid);
       }
-      setGrid(grid);
-      console.log(grid);
     }
 
     randomizeGrid();
-  }, [windowWidth]);
+  }, [gridWidth]); //IMPORTANT! This function depends on gridwidth to render properly
 
   const calculateNeighbors = (currentGrid, ii, jj) => {
     //Rules for Torodial World
@@ -182,33 +169,71 @@ const GameOfLifeV2 = () => {
     isRunning ? delay : null
   );
 
+  const checkIfRunning = () => {
+    setIsRunning(isRunning);
+    return isRunning;
+  };
+
+  const togglePlay = () => {
+    if (cellGrid.length <= 0) {
+      return;
+    } else {
+      setIsRunning(!isRunning);
+    }
+  };
+
+  function randomizeGrid() {
+    let grid = [];
+
+    if (gridWidth !== null) {
+      for (let rowIndex = 0; rowIndex < gridHeight; rowIndex++) {
+        let row = [];
+        for (let colIndex = 0; colIndex < gridWidth; colIndex++) {
+          let cellState = Math.random() > 0.8 ? true : false;
+          if (!cellState) {
+            row.push({
+              status: cellState,
+            });
+          } else {
+            row.push({
+              status: cellState,
+              newBorn: true,
+            });
+          }
+        }
+        grid.push(row);
+      }
+      setGrid(grid);
+    }
+  }
+  const resetGrid = () => {
+    setIsRunning(false);
+    setGrid([]);
+    randomizeGrid();
+    setIsRunning(true);
+  };
+
   return (
     <>
       <div className="gol-container">
         <h3 className="title">Conway's Game Of Life</h3>
         <div className="board">
-          {cellGrid.map((tableRow, row_index) => {
-            return tableRow.map((tableCell, cell_index) => {
-              return (
-                <Cell
-                  key={cell_index}
-                  alive={tableCell.status}
-                  newBorn={tableCell.newBorn}></Cell>
-              );
-            });
-          })}
+          {windowWidth
+            ? cellGrid.map((tableRow, row_index) => {
+                return tableRow.map((tableCell, cell_index) => {
+                  return (
+                    <Cell
+                      row_index={row_index}
+                      cell_index={cell_index}
+                      alive={tableCell.status}
+                      newBorn={tableCell.newBorn}></Cell>
+                  );
+                });
+              })
+            : null}
         </div>
-        <Menu
-        // randomizeGrid={randomizeGrid}
-        // clearGrid={clearGrid}
-        // togglePlay={togglePlay}
-        // updateGrid={updateGrid}
-        // checkIfRunning={checkIfRunning}
-        />
+        <Menu resetGrid={resetGrid} togglePlay={togglePlay} />
       </div>
-      <h3>{`CellCount: ${cellCount}`}</h3>
-      <h3>{`Height: ${windowHeight}`}</h3>
-      <h3>{`Width: ${windowWidth}`}</h3>
     </>
   );
 };
