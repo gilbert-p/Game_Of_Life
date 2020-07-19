@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import Menu from "./Menu.js";
+import useInterval from "./custom_hooks/useInterval";
+import "./GOLv2.scss";
+import "css.gg";
 
 const Cell = (props) => {
   const { key, newBorn, alive, row_index, cell_index } = props;
@@ -15,19 +18,17 @@ const Cell = (props) => {
 
 const GameOfLifeV2 = () => {
   const [windowWidth, setWindowWidth] = useState(null);
-  const [windowHeight, setWindowHeight] = useState(null);
   const [cellCount, setCellCount] = useState(null); //default for mobile
   const [gridWidth, setGridWidth] = useState(null);
   const [gridHeight, setGridHeight] = useState(null);
   const [cellGrid, setGrid] = useState([]);
-  const [generationCount, setGenerationCount] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
   const [delay, setDelay] = useState(100);
+  const [generationCount, setGenerationCount] = useState(0);
 
   useEffect(() => {
     function handleResize() {
       setWindowWidth(window.innerWidth);
-      setWindowHeight(window.innerHeight);
       window.addEventListener("resize", handleResize);
 
       return () => {
@@ -141,25 +142,6 @@ const GameOfLifeV2 = () => {
     }
     setGrid(newGrid);
     setGenerationCount(generationCount + 1);
-  };
-
-  const useInterval = (callback, delay) => {
-    const savedCallback = useRef();
-
-    useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-
-    useEffect(() => {
-      function tick() {
-        savedCallback.current();
-      }
-
-      if (delay !== null) {
-        let id = setInterval(tick, delay);
-        return () => clearInterval(id);
-      }
-    }, [delay]);
   };
 
   useInterval(

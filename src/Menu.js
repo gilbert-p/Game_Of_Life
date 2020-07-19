@@ -12,10 +12,6 @@ const Menu = (props) => {
 
   return (
     <div className="game-menu">
-      {/* <div className="menu-btn randomize">
-        <i class="gg-arrows-exchange"></i>
-        <p>Randomize</p>
-      </div> */}
       <div onClick={resetGrid} className="menu-btn clear">
         <i class="gg-redo"></i>
         <p>RESET</p>
